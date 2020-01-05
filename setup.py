@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="irrigation-caddy-sampscl", # Replace with your own username
-    version="0.0.3",
+    name="irrigation-caddy",
+    version="0.0.4",
     author="Clay Sampson",
     author_email="pdgeek@gmail.com",
     description="Irrigation Caddy Control",
