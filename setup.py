@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="irrigation-caddy-YOUR-USERNAME-HERE", # Replace with your own username
+    name="irrigation-caddy-sampscl", # Replace with your own username
     version="0.0.1",
     author="Clay Sampson",
     author_email="pdgeek@gmail.com",
