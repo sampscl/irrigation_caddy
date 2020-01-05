@@ -2,4 +2,5 @@ build/
 dist/
 __pycache__
 irrigation_caddy_*/
+irrigation_caddy.egg-info/
 venv/
