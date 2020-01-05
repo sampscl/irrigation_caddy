@@ -21,7 +21,6 @@ class IrrigationCaddy:
             * port: string or integer, optional
                 The irrigation caddy server port, defaults to 80
         """
-        print(kwargs)
         self._server=kwargs["server"] or "irrigationcaddy.local"
         self._port=kwargs["port"] or "80"
     # end __init__
@@ -44,7 +43,8 @@ class IrrigationCaddy:
             "2" : "10",
             }
             Meaning: run zone 4 for 15 minutes, then zone 1 for 10 minutes,
-            and finally zone 2 for 10 minutes.
+            and finally zone 2 for 10 minutes. Currently, the durations must be
+            less than 60 minutes.
 
         Returns
         -------
@@ -52,13 +52,14 @@ class IrrigationCaddy:
             True on successful start of the irrigation program. False on failure.
         """
         uri = "http://{}:{}".format(self._server, self._port)
-        post = prog.copy()
-        post.update({
+        post = {
             "pgmNum" : "4",
             "doProgram" : "1",
             "runNow" : "1"
-        })
-        request = Request(url, data = urlencode(post).encode(), method = "POST")
+        }
+        for k, v in prog.items():
+            post["z{}durMin".format(k)] = v
+        request = Request(uri, data = urlencode(post).encode(), method = "POST")
         response = urlopen(request)
         return response.getcode() == 200
     # end run_program
